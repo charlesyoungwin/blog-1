@@ -92,15 +92,15 @@
 
 #### 常见异常及可能原因
 
-- 堆区
+- 堆区 java heap space
     - `OutOfMemoryException`。使用工具对快照进行分析，看是否发生了内存泄露（内存中有不再使用的但无法回收的对象或资源）。若是，则通过分析引用链找到根源，解决问题；若不是检查虚拟机堆参数，看是否能够调大。再检查代码中是否有生命周期很长的大对象。
 - 虚拟机栈和本地方法栈
     - `OutOfMemoryException`。栈容量 * 线程数量 = 固定值。当线程数量过多时会引发，可以适当减小栈容量。
     - `StackOverflowException`。按异常查根源。
 - 方法区和运行时常量池
 - 直接内存溢出
-    - 不正确的使用 NIO。 
-    
+    - 不正确的使用 NIO。
+
 #### String 与字符串常量
 
 ```java
@@ -110,7 +110,7 @@ public class StringTest {
 		String n = "hello";
 		String u = new String(m);
 		String v = new String("hello");
-		
+
 		System.out.println("m == n: " + (m == n));
 		System.out.println("m == u: " + (m == u));
 		System.out.println("m == v: " + (m == v));
@@ -141,7 +141,7 @@ u == v: false
     - 本地方法中 JNI 引用的对象（不太懂）
 1. 回收方法区
     - 新生代的回收效率可达到 70% - 95%，而永久代则低的多（性价比太低）
-    - 在大量使用反射、动态代理、CGLib 等 ByteCode 框架、动态生成 JSP 以及 OSGi 这类频繁自定义 ClassLoader 的场景都需要虚拟机有卸载类的能力。 
+    - 在大量使用反射、动态代理、CGLib 等 ByteCode 框架、动态生成 JSP 以及 OSGi 这类频繁自定义 ClassLoader 的场景都需要虚拟机有卸载类的能力。
 
 ### 垃圾收集算法
 
@@ -255,7 +255,7 @@ TLAB（Thread local allocate buffer）线程私有分配缓冲区，每个线程
     1. 词法分析。将源代码转换为标记（`Token`） 的集合
         - Token: 是编译过程中的最小元素。例如关键字、变量名、运算符等等
     1. 语法分析。通过 `Token` 序列将构造抽象语法树(Abstract syntax tree)
-        
+
 
 ## 参考
 
